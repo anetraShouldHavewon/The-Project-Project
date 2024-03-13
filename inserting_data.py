@@ -1,7 +1,7 @@
 import sqlite3
 import csv
 
-connection = sqlite3.connect("H:/Digital Tech/Year 13/Database Standard/book_film_adaptation.db")
+connection = sqlite3.connect("H:/Digital Tech/Year 13/Database Standard/The Project Project/book_film_adaptation.db")
 cursor = connection.cursor()
 
 def get_data_from_csv(info_file, wanted_column_name, starting_index, final_index):
@@ -19,17 +19,24 @@ def get_data_from_csv(info_file, wanted_column_name, starting_index, final_index
     
     return(list_of_data)
 
-with open("H:/Digital Tech/Year 13/Database Standard/books.csv", mode = "r")as file:
+with open("books.csv", 'r', encoding = "utf-8")as file:
     new_file = csv.reader(file)
     book_info_list = list(new_file)
     # getting the names of the books
-    book_titles = get_data_from_csv(book_info_list, "title", 1, 6)
-    print(book_titles)
-    
-
-    
-    
+    titles = get_data_from_csv(book_info_list, "title", 1, 5)
+    num_of_pages = get_data_from_csv(book_info_list, "  num_pages", 1, 5)
+    authors = get_data_from_csv(book_info_list, "authors", 1, 5)
 
 
-    
-    
+query1 = "INSERT INTO Book(title,number_of_pages,author) VALUES (?,?,?)"
+
+for index in range(len(titles)):
+    title = titles[index]
+    num_of_page = num_of_pages[index]
+    author = authors[index]
+    cursor.execute(query1, ((title,), (num_of_page,), (author,)))
+
+connection.commit()
+connection.close()
+
+
