@@ -8,7 +8,7 @@ def first_menu():
     print("The world's most good film adaptation website")
     user_input_1 = input("Would you like to just \nA. look at reviews or \nB. actually write them\nPress A or B.\nPlease\n")
     while user_input_1 not in ["A", "B"]:
-        user_input_1 = input("Do it properly. Or else...\n")
+        user_input_1 = input("Type in a capital A or B. Do it properly. Or else...\n")
     want_to_review = False
     if user_input_1 == "A":
         want_to_review = True
@@ -31,18 +31,31 @@ if want_to_review is True:
         film_titles.append(film_title[0])
 
     print("Choose which adaptation to review!!")
-    print([x for x in range(1,len(book_titles)+1)])
     for index, element in enumerate(book_titles):
         print(f"{index+1}. '{film_titles[index]}' which is an adaptation of '{element}'")
     user_input_2 = input("Press a number: ")
-    try:
-        user_input_2 = int(user_input_2)
-    except 
-    while user_input_2 not in [x for x in range(1,len(book_titles)+1)]:
-        user_input_2 = input("Do it properly. Or else...\n")
-    if user_input_2 == "4":
-        print("carriefisher")
+    acceptable_ids1 = [x for x in range(1,len(book_titles)+1)]
+    acceptable_ids2 = []
+    for id in acceptable_ids1:
+        id = str(id)
+        acceptable_ids2.append(id)
     
+    while user_input_2 not in acceptable_ids2:
+        user_input_2 = input("Do it properly. Or else...\n")
+        
+    rating_out_of_5 = input("Rate out of 5:\n")
+    acceptable_ratings1 = [x for x in range(0, 6)]
+    acceptable_ratings2 = []
+    for rating in acceptable_ratings1:
+        rating = str(rating)
+        acceptable_ratings2.append(rating)
+
+    while rating_out_of_5 not in acceptable_ratings2:
+        rating_out_of_5 = input("Type in a number from 0 to 5 you mewling quim: ")
+
+    book_title = book_titles[int(user_input_2)-1]
+    things_I_like = input(f"Anything you liked about {book_title}")
+
 
 
 if want_to_review is False:
